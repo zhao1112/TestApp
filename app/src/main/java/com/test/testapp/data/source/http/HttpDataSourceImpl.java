@@ -1,10 +1,10 @@
 package com.test.testapp.data.source.http;
 
 
-import com.test.testapp.data.AppRepository;
 import com.test.testapp.data.source.HttpDataSource;
 import com.test.testapp.data.source.http.service.AppApiService;
 import com.test.testapp.entity.DemoEntity;
+import com.test.testapp.entity.ShopBean;
 
 import io.reactivex.Observable;
 import me.goldze.mvvmhabit.http.BaseResponse;
@@ -36,8 +36,8 @@ public class HttpDataSourceImpl implements HttpDataSource {
     }
 
     @Override
-    public Observable<BaseResponse<DemoEntity>> demoGet() {
-        return apiService.demoGet();
+    public Observable<BaseResponse<ShopBean>> demoGet(String shopId) {
+        return apiService.demoGet(shopId);
     }
 
     @Override

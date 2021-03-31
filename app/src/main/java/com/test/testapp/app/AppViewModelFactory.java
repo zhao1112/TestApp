@@ -9,6 +9,8 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.test.testapp.data.AppRepository;
+import com.test.testapp.ui.MainViewModel;
+import com.test.testapp.ui.splash.SplashViewModel;
 
 /**
  * Created by goldze on 2019/3/26.
@@ -43,7 +45,11 @@ public class AppViewModelFactory extends ViewModelProvider.NewInstanceFactory {
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-
+        if (modelClass.isAssignableFrom(MainViewModel.class)) {
+            return (T) new MainViewModel(mApplication, mRepository);
+        } else if (modelClass.isAssignableFrom(SplashViewModel.class)) {
+            return (T) new SplashViewModel(mApplication, mRepository);
+        }
         throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());
     }
 }

@@ -6,8 +6,8 @@ package me.goldze.mvvmhabit.http;
  */
 public class BaseResponse<T> {
     private int code;
-    private String message;
-    private T result;
+    private String msg;
+    private T data;
 
     public int getCode() {
         return code;
@@ -18,11 +18,11 @@ public class BaseResponse<T> {
     }
 
     public T getResult() {
-        return result;
+        return data;
     }
 
     public void setResult(T result) {
-        this.result = result;
+        this.data = result;
     }
 
     public boolean isOk() {
@@ -30,10 +30,10 @@ public class BaseResponse<T> {
     }
 
     public String getMessage() {
-        return message;
+        return msg;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setMessage(String msg) {
+        this.msg = msg;
     }
 }

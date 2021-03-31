@@ -5,6 +5,7 @@ import androidx.annotation.VisibleForTesting;
 
 import com.test.testapp.data.source.HttpDataSource;
 import com.test.testapp.entity.DemoEntity;
+import com.test.testapp.entity.ShopBean;
 
 import io.reactivex.Observable;
 import me.goldze.mvvmhabit.base.BaseModel;
@@ -41,8 +42,8 @@ public class AppRepository extends BaseModel implements HttpDataSource {
 
 
     @Override
-    public Observable<BaseResponse<DemoEntity>> demoGet() {
-        return null;
+    public Observable<BaseResponse<ShopBean>> demoGet(String shopId) {
+        return mHttpDataSource.demoGet(shopId);
     }
 
     @Override

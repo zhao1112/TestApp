@@ -42,7 +42,7 @@ public class StatusBarUtil {
     /**
      * 修改状态栏颜色
      */
-    public static void setStatusBarColor(Activity activity, int colorId) {
+    private static void setStatusBarColor(Activity activity, int colorId) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = activity.getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -54,7 +54,7 @@ public class StatusBarUtil {
     /**
      * 修改状态栏为全透明
      */
-    public static void transparencyBar(Activity activity) {
+    private static void transparencyBar(Activity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = activity.getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -71,7 +71,7 @@ public class StatusBarUtil {
      * @param dark       true 字体颜色为黑色，false为白色
      * @param isFullMode 是否在全屏模式下
      */
-    public static void setLightStatusBar(final Activity activity, final boolean dark, boolean isFullMode) {
+    private static void setLightStatusBar(final Activity activity, final boolean dark, boolean isFullMode) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ConstantUtil.DEVICE_FIRM == -1) {
                 ConstantUtil.DEVICE_FIRM = RomUtils.getLightStatusBarAvailableRomType();
