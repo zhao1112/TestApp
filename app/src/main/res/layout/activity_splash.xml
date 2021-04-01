@@ -13,12 +13,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
+        <ImageView
+            android:id="@+id/iv_splash"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="1"
-            android:textSize="@dimen/sp_20" />
+            android:scaleType="fitXY" />
 
     </LinearLayout>
 

@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.test.testapp.data.AppRepository;
 import com.test.testapp.ui.MainViewModel;
+import com.test.testapp.ui.login.PhoneLoginViewModel;
 import com.test.testapp.ui.splash.SplashViewModel;
 
 /**
@@ -49,6 +50,8 @@ public class AppViewModelFactory extends ViewModelProvider.NewInstanceFactory {
             return (T) new MainViewModel(mApplication, mRepository);
         } else if (modelClass.isAssignableFrom(SplashViewModel.class)) {
             return (T) new SplashViewModel(mApplication, mRepository);
+        } else if (modelClass.isAssignableFrom(PhoneLoginViewModel.class)) {
+            return (T) new PhoneLoginViewModel(mApplication, mRepository);
         }
         throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());
     }

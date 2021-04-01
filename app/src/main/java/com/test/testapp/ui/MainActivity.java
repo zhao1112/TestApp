@@ -11,8 +11,11 @@ import com.test.testapp.databinding.ActivityMainBinding;
 import com.test.testapp.utils.StatusBarUtil;
 
 import me.goldze.mvvmhabit.base.BaseActivity;
+import me.goldze.mvvmhabit.utils.ToastUtils;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> {
+
+    private long mExitTime;       //实现“再按一次退出”的记录时间变量
 
     @Override
     public int initContentView(Bundle savedInstanceState) {
@@ -34,5 +37,15 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     public void initData() {
         super.initData();
         StatusBarUtil.setStatusBar(this, false, R.color.color_FFFFFF, true);
+    }
+
+    @Override //再按一次退出程序
+    public void onBackPressed() {
+        if (System.currentTimeMillis() - mExitTime < 2000) {
+            super.onBackPressed();
+        } else {
+            mExitTime = System.currentTimeMillis();
+            ToastUtils.showShort("再按一次返回键退出应用");
+        }
     }
 }
