@@ -18,10 +18,16 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            manifestPlaceholders = [
+                    k_appName: "@string/app_name"
+            ]
         }
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            manifestPlaceholders = [
+                    k_appName: "@string/app_name_test"
+            ]
         }
     }
 
@@ -32,6 +38,29 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    signingConfigs {
+        config {
+            keyAlias 'key0'
+            keyPassword '070812'
+            storeFile file('../testapp.jks')
+            storePassword '070812'
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            if (variant.buildType.name.equals('release')) {
+                variant.getPackageApplicationProvider().get().outputDirectory = project.file('../apk/')
+                variant.getPackageApplicationProvider().get().outputScope.apkDatas.forEach { apkData ->
+                    //这个修改输出APK的文件名
+                    apkData.outputFileName = variant.applicationId + "_" + variant.flavorName + "_versionName" + variant.versionName + "_versionCode" + variant.versionCode + '_release.apk'
+                }
+            } else {
+                outputFileName = variant.applicationId + "_" + variant.flavorName + "_versionName" + variant.versionName + "_versionCode" + variant.versionCode + "_debug.apk"
+            }
+        }
     }
 
 }
