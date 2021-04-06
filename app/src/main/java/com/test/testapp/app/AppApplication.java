@@ -1,7 +1,7 @@
 package com.test.testapp.app;
 
 import com.test.testapp.BuildConfig;
-import com.test.testapp.ui.MainActivity;
+import com.test.testapp.ui.main.MainActivity;
 import com.test.testapp.R;
 
 import me.goldze.mvvmhabit.base.BaseApplication;
@@ -25,7 +25,7 @@ public class AppApplication extends BaseApplication {
     private void initCrash() {
         CaocConfig.Builder.create()
                 .backgroundMode(CaocConfig.BACKGROUND_MODE_SILENT) //背景模式,开启沉浸式
-                .enabled(true) //是否启动全局异常捕获
+                .enabled(false) //是否启动全局异常捕获
                 .showErrorDetails(true) //是否显示错误详细信息
                 .showRestartButton(true) //是否显示重启按钮
                 .trackActivities(true) //是否跟踪Activity

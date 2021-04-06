@@ -9,8 +9,12 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.test.testapp.data.AppRepository;
-import com.test.testapp.ui.MainViewModel;
 import com.test.testapp.ui.login.PhoneLoginViewModel;
+import com.test.testapp.ui.main.MainViewModel;
+import com.test.testapp.ui.main.dynamic.DynamicViewModel;
+import com.test.testapp.ui.main.home.HomeViewModel;
+import com.test.testapp.ui.main.my.MyViewModel;
+import com.test.testapp.ui.main.news.NewsViewModel;
 import com.test.testapp.ui.splash.SplashViewModel;
 
 /**
@@ -52,6 +56,14 @@ public class AppViewModelFactory extends ViewModelProvider.NewInstanceFactory {
             return (T) new SplashViewModel(mApplication, mRepository);
         } else if (modelClass.isAssignableFrom(PhoneLoginViewModel.class)) {
             return (T) new PhoneLoginViewModel(mApplication, mRepository);
+        } else if (modelClass.isAssignableFrom(HomeViewModel.class)) {
+            return (T) new HomeViewModel(mApplication, mRepository);
+        } else if (modelClass.isAssignableFrom(DynamicViewModel.class)) {
+            return (T) new DynamicViewModel(mApplication, mRepository);
+        } else if (modelClass.isAssignableFrom(NewsViewModel.class)) {
+            return (T) new NewsViewModel(mApplication, mRepository);
+        } else if (modelClass.isAssignableFrom(MyViewModel.class)) {
+            return (T) new MyViewModel(mApplication, mRepository);
         }
         throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());
     }
