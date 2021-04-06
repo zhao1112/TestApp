@@ -78,4 +78,8 @@ dependencies {
     implementation project(':mvvmhabit')
     //底部tabBar
     implementation 'me.majiajie:pager-bottom-tab-strip:2.3.0X'
+    //XTabLayout
+    implementation 'com.androidkun:XTabLayout:1.1.5'
+    //万能适配器
+    implementation "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4"
 }

@@ -11,15 +11,14 @@ import me.goldze.mvvmhabit.base.BaseViewModel;
 import me.goldze.mvvmhabit.binding.command.BindingAction;
 import me.goldze.mvvmhabit.binding.command.BindingCommand;
 import me.goldze.mvvmhabit.bus.event.SingleLiveEvent;
-import me.goldze.mvvmhabit.utils.ToastUtils;
 
 /**
  * Created by Android Studio.
  * User: Administrator
- * Date: 2021/4/1
- * Time: 15:16
+ * Date: 2021/2/5
+ * Time: 10:11
  */
-public class PhoneLoginViewModel extends BaseViewModel<AppRepository> {
+public class PasswordLoginViewModel extends BaseViewModel<AppRepository> {
 
     //封装一个界面发生改变的观察者
     public UIChangeObservable uc = new UIChangeObservable();
@@ -27,11 +26,13 @@ public class PhoneLoginViewModel extends BaseViewModel<AppRepository> {
     public class UIChangeObservable {
         //登录
         public SingleLiveEvent<Boolean> pSwitchEvent = new SingleLiveEvent<>();
-        //获取验证码
-        public SingleLiveEvent<String> obtainCode = new SingleLiveEvent<>();
+        //查看密码
+        public SingleLiveEvent<Boolean> obtainCode = new SingleLiveEvent<>();
+        //密码错误提示
+        public SingleLiveEvent<Boolean> phonetips = new SingleLiveEvent<>();
     }
 
-    public PhoneLoginViewModel(@NonNull Application application, AppRepository model) {
+    public PasswordLoginViewModel(@NonNull Application application, AppRepository model) {
         super(application, model);
     }
 
@@ -43,19 +44,28 @@ public class PhoneLoginViewModel extends BaseViewModel<AppRepository> {
         }
     });
 
-    //获取验证码
-    public BindingCommand obtaincode = new BindingCommand(new BindingAction() {
+    //查看密码
+    public BindingCommand obtainCode = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
-            uc.obtainCode.setValue("1997");
+            uc.obtainCode.setValue(uc.obtainCode.getValue() == null || !uc.obtainCode.getValue());
         }
     });
 
-    //密码登录
-    public BindingCommand pwslogin = new BindingCommand(new BindingAction() {
+    public void getLogin(String phone, String code) {
+        if (phone.equals("15006237550")&&code.equals("000000")){
+            startActivity(MainActivity.class);
+            finish();
+        }else {
+            uc.phonetips.setValue(true);
+        }
+    }
+
+    //短信登录
+    public BindingCommand phonelogin = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
-            startActivity(PasswordLoginActivity.class);
+            startActivity(PhoneLoginActivity.class);
             finish();
         }
     });
@@ -68,8 +78,5 @@ public class PhoneLoginViewModel extends BaseViewModel<AppRepository> {
         }
     });
 
-    public void getLogin(String phone, String code) {
-        startActivity(MainActivity.class);
-        finish();
-    }
+
 }

@@ -14,6 +14,7 @@ import com.test.testapp.BR;
 import com.test.testapp.R;
 import com.test.testapp.app.AppViewModelFactory;
 import com.test.testapp.databinding.ActivitySplashBinding;
+import com.test.testapp.ui.login.PhoneLoginActivity;
 import com.test.testapp.ui.main.MainActivity;
 import com.test.testapp.utils.ImageLoad;
 import com.test.testapp.utils.StatusBarUtil;
@@ -97,7 +98,7 @@ public class SplashActivity extends BaseActivity<ActivitySplashBinding, SplashVi
                     timer++;
                     if (timer >= 3) {
                         handler.removeMessages(0);
-                        startActivity(MainActivity.class);
+                        startActivity(PhoneLoginActivity.class);
                         finish();
                     } else {
                         handler.sendEmptyMessageDelayed(0, 1000);

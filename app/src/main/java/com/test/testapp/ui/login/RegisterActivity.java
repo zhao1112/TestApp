@@ -14,20 +14,21 @@ import androidx.lifecycle.ViewModelProviders;
 import com.test.testapp.BR;
 import com.test.testapp.R;
 import com.test.testapp.app.AppViewModelFactory;
-import com.test.testapp.databinding.ActivityPhoneLoginBinding;
+import com.test.testapp.databinding.ActivityRegisterBinding;
 import com.test.testapp.utils.RegularUtils;
-import com.test.testapp.utils.StatusBarUtil;
 
 import me.goldze.mvvmhabit.base.BaseActivity;
 import me.goldze.mvvmhabit.utils.ToastUtils;
 
+import static com.test.testapp.utils.StatusBarUtil.setStatusBar;
+
 /**
  * Created by Android Studio.
  * User: Administrator
- * Date: 2021/4/1
- * Time: 15:14
+ * Date: 2021/2/5
+ * Time: 11:19
  */
-public class PhoneLoginActivity extends BaseActivity<ActivityPhoneLoginBinding, PhoneLoginViewModel> {
+public class RegisterActivity extends BaseActivity<ActivityRegisterBinding, RegisterViewModel> {
 
     public CountDownTimer timer = new CountDownTimer(30000, 1000) {
         @Override
@@ -44,7 +45,7 @@ public class PhoneLoginActivity extends BaseActivity<ActivityPhoneLoginBinding, 
 
     @Override
     public int initContentView(Bundle savedInstanceState) {
-        return R.layout.activity_phone_login;
+        return R.layout.activity_register;
     }
 
     @Override
@@ -53,9 +54,15 @@ public class PhoneLoginActivity extends BaseActivity<ActivityPhoneLoginBinding, 
     }
 
     @Override
-    public PhoneLoginViewModel initViewModel() {
-        AppViewModelFactory factory = AppViewModelFactory.getInstance(getApplication());
-        return ViewModelProviders.of(this, factory).get(PhoneLoginViewModel.class);
+    public RegisterViewModel initViewModel() {
+        AppViewModelFactory instance = AppViewModelFactory.getInstance(getApplication());
+        return ViewModelProviders.of(this, instance).get(RegisterViewModel.class);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setStatusBar(this, true, 0, false);
     }
 
     @Override
@@ -66,47 +73,8 @@ public class PhoneLoginActivity extends BaseActivity<ActivityPhoneLoginBinding, 
     }
 
     @Override
-    public void initViewObservable() {
-        super.initViewObservable();
-
-        //登录
-        viewModel.uc.pSwitchEvent.observe(this, new Observer<Boolean>() {
-            @Override
-            public void onChanged(@Nullable Boolean aBoolean) {
-                if (TextUtils.isEmpty(binding.phone.getText().toString().trim())) {
-                    ToastUtils.showShort("请输入手机号");
-                    return;
-                }
-                if (TextUtils.isEmpty(binding.code.getText().toString().trim())) {
-                    ToastUtils.showShort("请输入验证码");
-                    return;
-                }
-                if (!binding.privacy.isChecked()) {
-                    ToastUtils.showShort("登录前请阅读隐私协议并同意");
-                    return;
-                }
-                viewModel.getLogin(binding.phone.getText().toString().trim(), binding.code.getText().toString().trim());
-            }
-        });
-        //获取验证码
-        viewModel.uc.obtainCode.observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                if (TextUtils.isEmpty(binding.phone.getText().toString().trim())) {
-                    ToastUtils.showShort("请输入手机号");
-                    return;
-                }
-                timer.start();
-                binding.obtaincode.setEnabled(false);
-            }
-        });
-    }
-
-    @Override
     public void initData() {
         super.initData();
-        StatusBarUtil.setStatusBar(this, true, R.color.color_FFFFFF, false);
-
         binding.phone.addTextChangedListener(new MyTextWatcher());
         binding.code.addTextChangedListener(new MyTextWatcher());
     }
@@ -144,4 +112,39 @@ public class PhoneLoginActivity extends BaseActivity<ActivityPhoneLoginBinding, 
         }
     }
 
+    @Override
+    public void initViewObservable() {
+        super.initViewObservable();
+        //登录
+        viewModel.uc.pSwitchEvent.observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(@Nullable Boolean aBoolean) {
+                if (TextUtils.isEmpty(binding.phone.getText().toString().trim())) {
+                    ToastUtils.showShort("请输入手机号");
+                    return;
+                }
+                if (TextUtils.isEmpty(binding.code.getText().toString().trim())) {
+                    ToastUtils.showShort("请输入验证码");
+                    return;
+                }
+                if (!binding.privacy.isChecked()) {
+                    ToastUtils.showShort("登录前请阅读隐私协议并同意");
+                    return;
+                }
+                viewModel.getRegister(binding.phone.getText().toString().trim(), binding.code.getText().toString().trim());
+            }
+        });
+        //获取验证码
+        viewModel.uc.obtainCode.observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                if (TextUtils.isEmpty(binding.phone.getText().toString().trim())) {
+                    ToastUtils.showShort("请输入手机号");
+                    return;
+                }
+                timer.start();
+                binding.obtaincode.setEnabled(false);
+            }
+        });
+    }
 }
