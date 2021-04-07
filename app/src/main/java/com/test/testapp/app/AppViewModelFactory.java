@@ -18,6 +18,8 @@ import com.test.testapp.ui.main.home.DataViewModel;
 import com.test.testapp.ui.main.home.HomeViewModel;
 import com.test.testapp.ui.main.my.MyViewModel;
 import com.test.testapp.ui.main.news.NewsViewModel;
+import com.test.testapp.ui.setting.ProfileViewModel;
+import com.test.testapp.ui.setting.SexSelectionViewModel;
 import com.test.testapp.ui.splash.SplashViewModel;
 
 /**
@@ -73,6 +75,10 @@ public class AppViewModelFactory extends ViewModelProvider.NewInstanceFactory {
             return (T) new PasswordLoginViewModel(mApplication, mRepository);
         } else if (modelClass.isAssignableFrom(RegisterViewModel.class)) {
             return (T) new RegisterViewModel(mApplication, mRepository);
+        } else if (modelClass.isAssignableFrom(ProfileViewModel.class)) {
+            return (T) new ProfileViewModel(mApplication, mRepository);
+        } else if (modelClass.isAssignableFrom(SexSelectionViewModel.class)) {
+            return (T) new SexSelectionViewModel(mApplication, mRepository);
         }
 
         throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());

@@ -77,6 +77,10 @@ public class PhoneLoginActivity extends BaseActivity<ActivityPhoneLoginBinding, 
                     ToastUtils.showShort("请输入手机号");
                     return;
                 }
+                if (binding.phone.getText().toString().trim().length() < 11) {
+                    binding.phoneTips.setVisibility(View.VISIBLE);
+                    return;
+                }
                 if (TextUtils.isEmpty(binding.code.getText().toString().trim())) {
                     ToastUtils.showShort("请输入验证码");
                     return;

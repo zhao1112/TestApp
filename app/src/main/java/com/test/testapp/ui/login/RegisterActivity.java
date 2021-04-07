@@ -86,7 +86,6 @@ public class RegisterActivity extends BaseActivity<ActivityRegisterBinding, Regi
 
         }
 
-
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if (binding.phone.length() == 11) {
@@ -121,6 +120,10 @@ public class RegisterActivity extends BaseActivity<ActivityRegisterBinding, Regi
             public void onChanged(@Nullable Boolean aBoolean) {
                 if (TextUtils.isEmpty(binding.phone.getText().toString().trim())) {
                     ToastUtils.showShort("请输入手机号");
+                    return;
+                }
+                if (binding.phone.getText().toString().trim().length() < 11) {
+                    binding.phoneTips.setVisibility(View.VISIBLE);
                     return;
                 }
                 if (TextUtils.isEmpty(binding.code.getText().toString().trim())) {

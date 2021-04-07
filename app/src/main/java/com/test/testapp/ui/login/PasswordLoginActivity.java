@@ -95,6 +95,10 @@ public class PasswordLoginActivity extends BaseActivity<ActivityPasswordloginBin
                     ToastUtils.showShort("请输入手机号");
                     return;
                 }
+                if (binding.phone.getText().toString().trim().length() < 11) {
+                    binding.phoneTips.setVisibility(View.VISIBLE);
+                    return;
+                }
                 if (TextUtils.isEmpty(binding.code.getText().toString().trim())) {
                     ToastUtils.showShort("请输入密码");
                     return;

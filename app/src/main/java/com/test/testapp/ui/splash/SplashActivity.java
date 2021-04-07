@@ -4,6 +4,7 @@ import android.Manifest;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
@@ -12,11 +13,13 @@ import androidx.lifecycle.ViewModelProviders;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.test.testapp.BR;
 import com.test.testapp.R;
+import com.test.testapp.app.AppApplication;
 import com.test.testapp.app.AppViewModelFactory;
 import com.test.testapp.databinding.ActivitySplashBinding;
 import com.test.testapp.ui.login.PhoneLoginActivity;
 import com.test.testapp.ui.main.MainActivity;
 import com.test.testapp.utils.ImageLoad;
+import com.test.testapp.utils.MmkvUtils;
 import com.test.testapp.utils.StatusBarUtil;
 
 import io.reactivex.functions.Consumer;
@@ -98,7 +101,13 @@ public class SplashActivity extends BaseActivity<ActivitySplashBinding, SplashVi
                     timer++;
                     if (timer >= 3) {
                         handler.removeMessages(0);
-                        startActivity(PhoneLoginActivity.class);
+                        KLog.e(MmkvUtils.getInstance().decodeBoolean("FIRST"));
+                        if (!MmkvUtils.getInstance().decodeBoolean("FIRST")) {
+                            MmkvUtils.getInstance().encode("FIRST", true);
+                            startActivity(PhoneLoginActivity.class);
+                        } else {
+                            startActivity(MainActivity.class);
+                        }
                         finish();
                     } else {
                         handler.sendEmptyMessageDelayed(0, 1000);
