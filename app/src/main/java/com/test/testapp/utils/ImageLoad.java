@@ -38,6 +38,12 @@ public class ImageLoad {
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
             .centerCrop();
 
+    private static RequestOptions requestOptions = new RequestOptions()
+            .placeholder(R.mipmap.ic_launcher)
+            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+            .error(R.mipmap.ic_launcher)
+            .transform(new CornerTransformUtil(8));
+
     /**
      * 加载普通图片
      *
@@ -233,6 +239,14 @@ public class ImageLoad {
                         }
                     }
                 });
+    }
+
+    public static void TopDisplayRoundCorner(final Context context, String url, final ImageView imageView) {
+        Glide.with(context)
+                .asBitmap()
+                .load(url)
+                .apply(requestOptions)
+                .into(imageView);
     }
 
 

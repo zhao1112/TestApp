@@ -5,6 +5,7 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.test.testapp.entity.AgeBean;
 import com.test.testapp.entity.CitysBean;
+import com.test.testapp.entity.DataListBean;
 
 import org.json.JSONArray;
 
@@ -78,6 +79,12 @@ public class DataUtils {
              */
             options3Items.add(province_AreaList);
         }
+    }
+
+    public DataListBean initDataList(Context context) {
+        String JsonData = new GetJsonDataUtil().getJson(context, "datalist.json");//获取assets目录下的json文件数据
+        DataListBean dataListBean = new Gson().fromJson(JsonData, DataListBean.class);
+        return dataListBean;
     }
 
     public ArrayList<CitysBean> parseData(String result) {//Gson 解析
