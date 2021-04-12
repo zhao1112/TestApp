@@ -20,4 +20,6 @@ public class DownloadVideoViewModel extends BaseViewModel<AppRepository> {
     public DownloadVideoViewModel(@NonNull Application application, AppRepository model) {
         super(application, model);
     }
+
+
 }

@@ -2,9 +2,12 @@ package com.test.testapp.ui.downloadvideo;
 
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.test.testapp.BR;
@@ -17,6 +20,7 @@ import java.io.File;
 
 import cc.shinichi.library.tool.ui.ToastUtil;
 import me.goldze.mvvmhabit.base.BaseActivity;
+import retrofit2.http.PUT;
 
 /**
  * Created by Android Studio.
@@ -52,7 +56,6 @@ public class DownloadVideoActivity extends BaseActivity<ActivityDownloadVideoBin
     @Override
     public void initData() {
         super.initData();
-
         binding.tvDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,14 +74,13 @@ public class DownloadVideoActivity extends BaseActivity<ActivityDownloadVideoBin
                             public void onDownloading(int progress) {
                                 //下载中
                                 Log.i("downFile", "onDownloading:..............................文件下载中................................" + progress);
-                                ToastUtil.getInstance()._short(DownloadVideoActivity.this, "文件下载中" + progress);
                             }
 
                             @Override
                             public void onDownloadFailed(Exception e) {
                                 //下载异常进行相关提示操作
                                 Log.e("downFile", "onDownloadFailed:..........................下载文件失败..............................." + e.getMessage());
-                                ToastUtil.getInstance()._short(DownloadVideoActivity.this, "下载文件失败" + e.getMessage());
+                                ToastUtil.getInstance()._short(DownloadVideoActivity.this, "下载文件失败");
                             }
                         });
                     }
@@ -86,4 +88,5 @@ public class DownloadVideoActivity extends BaseActivity<ActivityDownloadVideoBin
             }
         });
     }
+
 }

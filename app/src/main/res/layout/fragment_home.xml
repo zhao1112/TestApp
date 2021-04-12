@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:binding="http://schemas.android.com/tools">
 
     <data>
 
@@ -25,7 +26,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/dp_15"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                binding:onClickCommand="@{viewModel.download}">
 
                 <ImageView
                     android:layout_width="@dimen/dp_18"
