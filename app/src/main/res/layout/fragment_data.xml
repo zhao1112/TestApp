@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -13,11 +14,31 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_list"
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/sw_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:overScrollMode="never" />
+            app:srlAccentColor="@color/color_FFFFFF"
+            app:srlPrimaryColor="@color/color_14121E">
+
+            <com.scwang.smartrefresh.layout.header.ClassicsHeader
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never" />
+
+            <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_14121E" />
+
+
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
 
     </LinearLayout>
 
