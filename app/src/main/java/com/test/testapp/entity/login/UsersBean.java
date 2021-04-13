@@ -1,4 +1,4 @@
-package com.test.testapp.entity;
+package com.test.testapp.entity.login;
 
 /**
  * Created by Android Studio.

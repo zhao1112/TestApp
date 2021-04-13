@@ -6,7 +6,7 @@ import android.widget.RelativeLayout;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.test.testapp.R;
-import com.test.testapp.entity.DataListBean;
+import com.test.testapp.entity.home.DataListBean;
 import com.test.testapp.utils.ImageLoad;
 
 import org.jetbrains.annotations.NotNull;
@@ -31,7 +31,7 @@ public class DataAdapter extends BaseQuickAdapter<DataListBean.DataBean, BaseVie
         params.height = dataBean.getImageHeight();
         rlview.setLayoutParams(params);
 
-        ImageLoad.TopDisplayRoundCorner(getContext(), dataBean.getImageLoad(), baseViewHolder.findView(R.id.iv_icon));
+        ImageLoad.TopDisplayRoundCorner(getContext(), dataBean.getImageLoad(), rlview);
 
         ImageView iv_authentication = baseViewHolder.findView(R.id.iv_authentication);
         if (dataBean.isIsAuthentication()) {

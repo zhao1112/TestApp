@@ -1,4 +1,4 @@
-package com.test.testapp.entity;
+package com.test.testapp.entity.home;
 
 import java.util.List;
 

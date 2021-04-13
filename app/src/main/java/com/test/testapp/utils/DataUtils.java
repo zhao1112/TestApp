@@ -3,9 +3,10 @@ package com.test.testapp.utils;
 import android.content.Context;
 
 import com.google.gson.Gson;
-import com.test.testapp.entity.AgeBean;
-import com.test.testapp.entity.CitysBean;
-import com.test.testapp.entity.DataListBean;
+import com.test.testapp.entity.dynamic.DynamicBean;
+import com.test.testapp.entity.setting.AgeBean;
+import com.test.testapp.entity.setting.CitysBean;
+import com.test.testapp.entity.home.DataListBean;
 
 import org.json.JSONArray;
 
@@ -85,6 +86,12 @@ public class DataUtils {
         String JsonData = new GetJsonDataUtil().getJson(context, "datalist.json");//获取assets目录下的json文件数据
         DataListBean dataListBean = new Gson().fromJson(JsonData, DataListBean.class);
         return dataListBean;
+    }
+
+    public DynamicBean initDynamicBean(Context context){
+        String JsonData = new GetJsonDataUtil().getJson(context, "dynamic.json");//获取assets目录下的json文件数据
+        DynamicBean dynamicBean = new Gson().fromJson(JsonData, DynamicBean.class);
+        return dynamicBean;
     }
 
     public ArrayList<CitysBean> parseData(String result) {//Gson 解析

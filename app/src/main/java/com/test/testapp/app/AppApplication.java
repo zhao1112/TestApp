@@ -3,7 +3,7 @@ package com.test.testapp.app;
 import com.google.gson.Gson;
 import com.tencent.mmkv.MMKV;
 import com.test.testapp.BuildConfig;
-import com.test.testapp.entity.UsersBean;
+import com.test.testapp.entity.login.UsersBean;
 import com.test.testapp.ui.main.MainActivity;
 import com.test.testapp.R;
 import com.test.testapp.utils.FilePutGetUtils;
