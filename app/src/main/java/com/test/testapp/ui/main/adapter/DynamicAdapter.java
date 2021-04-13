@@ -49,7 +49,16 @@ public class DynamicAdapter extends BaseQuickAdapter<DynamicBean.DataBean, BaseV
         }
         //参与
         TextView tv_participate = baseViewHolder.findView(R.id.tv_participate);
-        if (dataBean.isParticipate()) {
+        if (!TextUtils.isEmpty(dataBean.getParticipate())) {
+            switch (dataBean.getParticipate()) {
+                case "01":
+                    tv_participate.setText("报名中");
+                    break;
+                case "02":
+                    tv_participate.setText("已报名");
+                    tv_participate.setBackground(getContext().getResources().getDrawable(R.drawable.ic_dynamic_icon));
+                    break;
+            }
             tv_participate.setVisibility(View.VISIBLE);
         } else {
             tv_participate.setVisibility(View.GONE);
@@ -101,6 +110,7 @@ public class DynamicAdapter extends BaseQuickAdapter<DynamicBean.DataBean, BaseV
         //视频
         RelativeLayout rl_video = baseViewHolder.findView(R.id.rl_video);
         if (!TextUtils.isEmpty(dataBean.getVideoPath())) {
+            ImageLoad.DisplayRoundCorner(getContext(), dataBean.getVideoCover(), baseViewHolder.findView(R.id.iv_cover), 5);
             rl_video.setVisibility(View.VISIBLE);
         } else {
             rl_video.setVisibility(View.GONE);

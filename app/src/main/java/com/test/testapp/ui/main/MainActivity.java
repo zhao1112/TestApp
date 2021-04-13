@@ -47,7 +47,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     @Override
     public void initData() {
         super.initData();
-        StatusBarUtil.setStatusBar(this, false, R.color.color_181522, false);
+        StatusBarUtil.setStatusBar(this, false, R.color.color_14121E, false);
 
         //初始化底部Button
         initBottomTab();
