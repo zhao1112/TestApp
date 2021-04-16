@@ -1,5 +1,7 @@
 package com.test.testapp.entity.login;
 
+import java.util.List;
+
 /**
  * Created by Android Studio.
  * User: Administrator
@@ -17,6 +19,12 @@ public class UsersBean {
     private String usersWeight;
     private String weixin;
     private String qq;
+    private boolean authentication;
+    private int lookingNumber;
+    private int dynamicNumber;
+    private double flowercoin;
+    private List<AlbumList> albumLists;
+    private int readingNumber;
 
     public String getUsersHeard() {
         return usersHeard;
@@ -88,5 +96,92 @@ public class UsersBean {
 
     public void setQq(String qq) {
         this.qq = qq;
+    }
+
+    public boolean isAuthentication() {
+        return authentication;
+    }
+
+    public void setAuthentication(boolean authentication) {
+        this.authentication = authentication;
+    }
+
+    public int getLookingNumber() {
+        return lookingNumber;
+    }
+
+    public void setLookingNumber(int lookingNumber) {
+        this.lookingNumber = lookingNumber;
+    }
+
+    public int getDynamicNumber() {
+        return dynamicNumber;
+    }
+
+    public void setDynamicNumber(int dynamicNumber) {
+        this.dynamicNumber = dynamicNumber;
+    }
+
+    public double getFlowercoin() {
+        return flowercoin;
+    }
+
+    public void setFlowercoin(double flowercoin) {
+        this.flowercoin = flowercoin;
+    }
+
+    public List<AlbumList> getAlbumLists() {
+        return albumLists;
+    }
+
+    public void setAlbumLists(List<AlbumList> albumLists) {
+        this.albumLists = albumLists;
+    }
+
+    public int getReadingNumber() {
+        return readingNumber;
+    }
+
+    public void setReadingNumber(int readingNumber) {
+        this.readingNumber = readingNumber;
+    }
+
+    public static class AlbumList {
+        private String userImage;
+        private String userVideoPath;
+        private String userVideo;
+        private boolean isVideo;
+
+        public String getUserImage() {
+            return userImage;
+        }
+
+        public void setUserImage(String userImage) {
+            this.userImage = userImage;
+        }
+
+        public String getUserVideoPath() {
+            return userVideoPath;
+        }
+
+        public void setUserVideoPath(String userVideoPath) {
+            this.userVideoPath = userVideoPath;
+        }
+
+        public String getUserVideo() {
+            return userVideo;
+        }
+
+        public void setUserVideo(String userVideo) {
+            this.userVideo = userVideo;
+        }
+
+        public boolean isVideo() {
+            return isVideo;
+        }
+
+        public void setVideo(boolean video) {
+            isVideo = video;
+        }
     }
 }

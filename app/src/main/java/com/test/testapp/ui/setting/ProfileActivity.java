@@ -298,6 +298,30 @@ public class ProfileActivity extends BaseActivity<ActivityProfileBinding, Profil
         usersBean.setWeixin(binding.weixin.getText().toString().trim());
         usersBean.setQq(binding.etQq.getText().toString().trim());
 
+        usersBean.setAuthentication(false);
+        usersBean.setLookingNumber(10);
+        usersBean.setDynamicNumber(20);
+        usersBean.setFlowercoin(99.00);
+        usersBean.setReadingNumber(5);
+
+        List<UsersBean.AlbumList> albumLists = new ArrayList<>();
+        for (int i = 0; i < 35; i++) {
+            UsersBean.AlbumList albumList = new UsersBean.AlbumList();
+            if (i % 4 == 0) {
+                albumList.setUserImage("");
+                albumList.setUserVideo("http://gank.io/images/e92911f5ff9446d5a899b652b1934b93");
+                albumList.setVideo(true);
+                albumList.setUserVideoPath(DataUtils.videoPath);
+            } else {
+                albumList.setUserImage("http://gank.io/images/f08e8ab6030d41a0ada3e6cecea0e60c");
+                albumList.setUserVideo("");
+                albumList.setVideo(false);
+                albumList.setUserVideoPath("");
+            }
+            albumLists.add(albumList);
+        }
+        usersBean.setAlbumLists(albumLists);
+
         AppApplication.getInstance().setUser(usersBean);
 
         startActivity(MainActivity.class);

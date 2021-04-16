@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.test.testapp.entity.dynamic.DynamicBean;
+import com.test.testapp.entity.news.NewsListBean;
 import com.test.testapp.entity.setting.AgeBean;
 import com.test.testapp.entity.setting.CitysBean;
 import com.test.testapp.entity.home.DataListBean;
@@ -39,6 +40,8 @@ public class DataUtils {
         }
         return mInstance;
     }
+
+    public static String videoPath = "https://vd3.bdstatic.com/mda-kedmncmd0ntvk0qp/v1-cae/sc/mda-kedmncmd0ntvk0qp.mp4?v_from_s=hba_haokan_4469&auth_key=1618557846-0-0-90c3f75ff084a7903f7daf288ee912ad&bcevod_channel=searchbox_feed&pd=1&pt=3&abtest=3000165_2";
 
     public void initJsonData(Context context, List<CitysBean> options1Items, ArrayList<ArrayList<String>> options2Items, ArrayList<ArrayList<ArrayList<String>>> options3Items) {//解析数据
 
@@ -88,10 +91,16 @@ public class DataUtils {
         return dataListBean;
     }
 
-    public DynamicBean initDynamicBean(Context context){
+    public DynamicBean initDynamicBean(Context context) {
         String JsonData = new GetJsonDataUtil().getJson(context, "dynamic.json");//获取assets目录下的json文件数据
         DynamicBean dynamicBean = new Gson().fromJson(JsonData, DynamicBean.class);
         return dynamicBean;
+    }
+
+    public NewsListBean initNewsListBean(Context context) {
+        String JsonData = new GetJsonDataUtil().getJson(context, "newslist.json");//获取assets目录下的json文件数据
+        NewsListBean newsListBean = new Gson().fromJson(JsonData, NewsListBean.class);
+        return newsListBean;
     }
 
     public ArrayList<CitysBean> parseData(String result) {//Gson 解析
@@ -176,6 +185,5 @@ public class DataUtils {
         }
         return ageBeans;
     }
-
 
 }

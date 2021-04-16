@@ -30,6 +30,9 @@ import me.goldze.mvvmhabit.base.BaseFragment;
  * Time: 17:08
  */
 public class DataFragment extends BaseFragment<FragmentDataBinding, DataViewModel> {
+
+    private DataAdapter dataAdapter;
+
     @Override
     public int initContentView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return R.layout.fragment_data;
@@ -67,7 +70,7 @@ public class DataFragment extends BaseFragment<FragmentDataBinding, DataViewMode
             }
         });
 
-        DataAdapter dataAdapter = new DataAdapter();
+        dataAdapter = new DataAdapter();
         binding.rvList.setAdapter(dataAdapter);
         dataAdapter.setList(DataUtils.getInstance().initDataList(getActivity()).getData());
 

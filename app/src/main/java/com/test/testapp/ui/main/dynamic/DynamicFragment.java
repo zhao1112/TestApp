@@ -1,14 +1,19 @@
 package com.test.testapp.ui.main.dynamic;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.test.testapp.BR;
 import com.test.testapp.R;
 import com.test.testapp.app.AppViewModelFactory;
@@ -30,6 +35,8 @@ import me.goldze.mvvmhabit.base.BaseFragment;
  * Time: 15:43
  */
 public class DynamicFragment extends BaseFragment<FragmentDynamicBinding, DynamicViewModel> {
+
+    private DynamicAdapter dynamicAdapter;
 
     @Override
     public int initContentView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -62,10 +69,37 @@ public class DynamicFragment extends BaseFragment<FragmentDynamicBinding, Dynami
 
     private void initView() {
         binding.rcView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        DynamicAdapter dynamicAdapter = new DynamicAdapter();
+        dynamicAdapter = new DynamicAdapter();
         binding.rcView.setAdapter(dynamicAdapter);
-
         dynamicAdapter.setList(DataUtils.getInstance().initDynamicBean(getActivity()).getData());
+
+        //刷新
+        binding.swView.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        dynamicAdapter.setList(DataUtils.getInstance().initDynamicBean(getActivity()).getData());
+                        binding.swView.finishRefresh();
+                    }
+                }, 1500);
+            }
+        });
+        //加载更多
+        binding.swView.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        dynamicAdapter.addData(DataUtils.getInstance().initDynamicBean(getActivity()).getData());
+                        binding.swView.finishLoadMore();
+                    }
+                }, 1500);
+            }
+        });
+
     }
 
     private void initBanner() {
