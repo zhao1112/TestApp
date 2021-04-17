@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.test.testapp.data.AppRepository;
+import com.test.testapp.ui.details.DetailsViewModel;
 import com.test.testapp.ui.downloadvideo.DownloadVideoViewModel;
 import com.test.testapp.ui.login.PasswordLoginViewModel;
 import com.test.testapp.ui.login.PhoneLoginViewModel;
@@ -82,6 +83,8 @@ public class AppViewModelFactory extends ViewModelProvider.NewInstanceFactory {
             return (T) new SexSelectionViewModel(mApplication, mRepository);
         } else if (modelClass.isAssignableFrom(DownloadVideoViewModel.class)) {
             return (T) new DownloadVideoViewModel(mApplication, mRepository);
+        } else if (modelClass.isAssignableFrom(DetailsViewModel.class)) {
+            return (T) new DetailsViewModel(mApplication, mRepository);
         }
 
         throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());

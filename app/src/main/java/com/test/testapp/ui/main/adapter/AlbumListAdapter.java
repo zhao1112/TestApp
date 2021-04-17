@@ -55,7 +55,6 @@ public class AlbumListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         if (position == getItemCount() - 1) {
             if (list.size() > 3) {
                 albumHolder.tv_albun_number.setText("+" + list.size());
-                albumHolder.iv_video_play.setVisibility(View.GONE);
                 albumHolder.tv_albun_number.setVisibility(View.VISIBLE);
             }
             albumHolder.tv_view.setVisibility(View.GONE);

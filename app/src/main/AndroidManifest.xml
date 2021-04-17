@@ -41,7 +41,9 @@
 
         <activity android:name=".ui.setting.SexSelectionActivity" />
 
-        <activity android:name=".ui.downloadvideo.DownloadVideoActivity"/>
+        <activity android:name=".ui.downloadvideo.DownloadVideoActivity" />
+
+        <activity android:name=".ui.details.DetailsActivity" />
 
         <!-- 图片选择Activity-->
         <activity

@@ -110,9 +110,7 @@
                             android:layout_height="@dimen/dp_21"
                             android:layout_marginRight="@dimen/dp_20"
                             android:padding="@dimen/dp_3"
-                            android:src="@mipmap/icon_more">
-
-                        </ImageView>
+                            android:src="@mipmap/icon_more"/>
 
                     </LinearLayout>
 

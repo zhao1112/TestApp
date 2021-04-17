@@ -3,6 +3,7 @@ package com.test.testapp.ui.main.home;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,8 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -18,6 +21,7 @@ import com.test.testapp.BR;
 import com.test.testapp.R;
 import com.test.testapp.app.AppViewModelFactory;
 import com.test.testapp.databinding.FragmentDataBinding;
+import com.test.testapp.ui.details.DetailsActivity;
 import com.test.testapp.ui.main.adapter.DataAdapter;
 import com.test.testapp.utils.DataUtils;
 
@@ -73,6 +77,17 @@ public class DataFragment extends BaseFragment<FragmentDataBinding, DataViewMode
         dataAdapter = new DataAdapter();
         binding.rvList.setAdapter(dataAdapter);
         dataAdapter.setList(DataUtils.getInstance().initDataList(getActivity()).getData());
+        dataAdapter.addChildClickViewIds(R.id.iv_icon);
+        dataAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+                switch (view.getId()){
+                    case R.id.iv_icon:
+                        startActivity(DetailsActivity.class);
+                        break;
+                }
+            }
+        });
 
         //刷新
         binding.swView.setOnRefreshListener(new OnRefreshListener() {

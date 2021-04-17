@@ -7,7 +7,7 @@
     <RelativeLayout
         android:id="@+id/rl_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_6"
         android:layout_marginRight="@dimen/dp_6"
         android:background="@color/color_181522">
@@ -89,11 +89,11 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:scaleType="fitXY"
                 android:id="@+id/iv_authentication"
                 android:layout_width="@dimen/dp_44"
                 android:layout_height="@dimen/dp_16"
                 android:layout_marginLeft="@dimen/dp_8"
+                android:scaleType="fitXY"
                 android:src="@mipmap/img_certification" />
 
             <LinearLayout
