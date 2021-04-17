@@ -110,7 +110,7 @@
                             android:layout_height="@dimen/dp_21"
                             android:layout_marginRight="@dimen/dp_20"
                             android:padding="@dimen/dp_3"
-                            android:src="@mipmap/icon_more"/>
+                            android:src="@mipmap/icon_more" />
 
                     </LinearLayout>
 
@@ -341,8 +341,7 @@
                             android:layout_height="@dimen/dp_105"
                             android:layout_marginLeft="@dimen/dp_12"
                             android:layout_marginTop="@dimen/dp_12"
-                            android:layout_marginRight="@dimen/dp_12"
-                            android:background="@drawable/ic_album_null_coin">
+                            android:layout_marginRight="@dimen/dp_12">
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/rv_album"
