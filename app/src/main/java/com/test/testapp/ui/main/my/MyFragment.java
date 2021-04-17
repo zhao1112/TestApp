@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.test.testapp.BR;
 import com.test.testapp.R;
@@ -14,7 +16,10 @@ import com.test.testapp.app.AppViewModelFactory;
 import com.test.testapp.databinding.FragmentMyBindingImpl;
 import com.test.testapp.databinding.FragmentNewsBinding;
 import com.test.testapp.entity.login.UsersBean;
+import com.test.testapp.ui.main.adapter.AlbumListAdapter;
 import com.test.testapp.utils.ImageLoad;
+
+import java.util.List;
 
 import me.goldze.mvvmhabit.base.BaseFragment;
 
@@ -62,6 +67,12 @@ public class MyFragment extends BaseFragment<FragmentMyBindingImpl, MyViewModel>
         }
         binding.tvLookingNumber.setText(user.getLookingNumber() + "");
         binding.tvDynamicNumber.setText(user.getDynamicNumber() + "");
+        binding.tvFlowercoin.setText(user.getFlowercoin() + "");
 
+        if (user.getAlbumLists() != null && user.getAlbumLists().size() > 0) {
+            binding.rvAlbum.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
+            AlbumListAdapter albumListAdapter = new AlbumListAdapter(getActivity(), user.getAlbumLists());
+            binding.rvAlbum.setAdapter(albumListAdapter);
+        }
     }
 }

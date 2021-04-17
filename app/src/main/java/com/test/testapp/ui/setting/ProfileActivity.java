@@ -305,7 +305,7 @@ public class ProfileActivity extends BaseActivity<ActivityProfileBinding, Profil
         usersBean.setReadingNumber(5);
 
         List<UsersBean.AlbumList> albumLists = new ArrayList<>();
-        for (int i = 0; i < 35; i++) {
+        for (int i = 0; i < 2; i++) {
             UsersBean.AlbumList albumList = new UsersBean.AlbumList();
             if (i % 4 == 0) {
                 albumList.setUserImage("");
