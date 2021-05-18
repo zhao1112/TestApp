@@ -53,7 +53,7 @@ public class PasswordLoginViewModel extends BaseViewModel<AppRepository> {
     });
 
     public void getLogin(String phone, String code) {
-        if (phone.equals("15006237550")&&code.equals("000000")){
+        if (phone.equals("15006237888")&&code.equals("0000")){
             startActivity(MainActivity.class);
             finish();
         }else {

@@ -97,7 +97,7 @@ public class RegisterActivity extends BaseActivity<ActivityRegisterBinding, Regi
             }
 
             if (binding.code.length() == 4) {
-                if (!binding.code.getText().toString().trim().equals("1234")) {
+                if (!binding.code.getText().toString().trim().equals("0000")) {
                     binding.codeTips.setVisibility(View.VISIBLE);
                 }
             } else {

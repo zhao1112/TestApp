@@ -65,6 +65,7 @@ public class PhoneLoginViewModel extends BaseViewModel<AppRepository> {
         @Override
         public void call() {
             startActivity(RegisterActivity.class);
+            finish();
         }
     });
 

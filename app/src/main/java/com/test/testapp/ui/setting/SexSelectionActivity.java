@@ -101,6 +101,7 @@ public class SexSelectionActivity extends BaseActivity<ActivitySexselectionBindi
             public void onChanged(Boolean aBoolean) {
                 if (SexSelect) {
                     startActivity(ProfileActivity.class);
+                    finish();
                 } else {
                     ToastUtils.showShort("请选择您的性别");
                 }

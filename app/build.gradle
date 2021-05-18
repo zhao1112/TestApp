@@ -13,6 +13,19 @@ android {
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            // 注意：这里需要添加项目所需 CPU 类型的最小集
+            abiFilters "armeabi", "armeabi-v7a", "x86_64", "x86"
+        }
+
+        manifestPlaceholders = [
+                GETUI_APPID     : rootProject.ext.push.GETUI_APP_ID,
+                GETUI_APP_KEY   : rootProject.ext.push.GETUI_APP_KEY,
+                GETUI_APP_SECRET: rootProject.ext.push.GETUI_APP_SECRET
+        ]
+
+        buildConfigField("String", "SERVER_URL", "\"${rootProject.ext.push.SERVER_URL}\"")
     }
 
     buildTypes {
@@ -75,27 +88,24 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    //MVVMHabit
-    implementation project(':mvvmhabit')
-    //底部tabBar
-    implementation 'me.majiajie:pager-bottom-tab-strip:2.3.0X'
-    //XTabLayout
-    implementation 'com.androidkun:XTabLayout:1.1.5'
-    //万能适配器
-    implementation "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4"
-    //mmkv
-    implementation 'com.tencent:mmkv:1.0.23'
-    //
-    implementation 'com.contrarywind:Android-PickerView:4.1.9'
-    // 查看大图
-    implementation 'com.github.SherlockGougou:BigImageViewPager:androidx-6.1.3'
-    //
-    implementation 'com.github.donkingliang:ImageSelector:2.2.0'
-    //智能刷新控件
-    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-1'
+    implementation project(':mvvmhabit') //MVVMHabit
+    implementation 'me.majiajie:pager-bottom-tab-strip:2.3.0X'   //底部tabBar
+    implementation 'com.androidkun:XTabLayout:1.1.5'//XTabLayout
+    implementation "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4" //万能适配器
+    implementation 'com.tencent:mmkv:1.0.23'   //mmkv
+    implementation 'com.contrarywind:Android-PickerView:4.1.9'   //
+    implementation 'com.github.SherlockGougou:BigImageViewPager:androidx-6.1.3' // 查看大图
+    implementation 'com.github.donkingliang:ImageSelector:2.2.0'  //
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-1' //智能刷新控件
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-1'
-    //轮播图控件
-    implementation 'com.youth.banner:banner:2.1.0'
-    //流式布局
-    implementation'com.hyman:flowlayout-lib:1.1.2'
+    implementation 'com.youth.banner:banner:2.1.0' //轮播图控件
+    implementation 'com.hyman:flowlayout-lib:1.1.2' //流式布局
+    implementation 'com.getui:gtsdk:3.1.4.0'  //个推SDK
+    implementation 'com.getui:gtc:3.1.0.0'  //个推核心组件
+
+    implementation 'io.hyphenate:ease-im-kit:3.8.1' // EaseIMKit
+    implementation 'io.hyphenate:hyphenate-chat:3.8.1'// EaseIMKit依赖，必须添加环信IM SDK
+    implementation 'io.hyphenate:ease-call-kit:3.8.1.1'//EaseCallKit依赖，必须添加环信IM SDK
+
+    implementation 'com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer:v8.1.3-jitpack'    //完整版引入 视频播放
 }

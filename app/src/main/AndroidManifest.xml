@@ -11,13 +11,24 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <uses-permission android:name="getui.permission.GetuiService.${applicationId}" />
+
+    <permission
+        android:name="getui.permission.GetuiService.${applicationId}"
+        android:protectionLevel="normal" />
+
+
     <application
         android:name=".app.AppApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/app"
         android:label="${k_appName}"
         android:networkSecurityConfig="@xml/network_security_config"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon,android:theme,android:label">
@@ -31,15 +42,25 @@
 
         <activity android:name=".ui.main.MainActivity" />
 
-        <activity android:name=".ui.login.PhoneLoginActivity" />
+        <activity
+            android:name=".ui.login.PhoneLoginActivity"
+            android:launchMode="singleTask" />
 
-        <activity android:name=".ui.login.RegisterActivity" />
+        <activity
+            android:name=".ui.login.RegisterActivity"
+            android:launchMode="singleTask" />
 
-        <activity android:name=".ui.login.PasswordLoginActivity" />
+        <activity
+            android:name=".ui.login.PasswordLoginActivity"
+            android:launchMode="singleTask" />
 
-        <activity android:name=".ui.setting.ProfileActivity" />
+        <activity
+            android:name=".ui.setting.ProfileActivity"
+            android:launchMode="singleTask" />
 
-        <activity android:name=".ui.setting.SexSelectionActivity" />
+        <activity
+            android:name=".ui.setting.SexSelectionActivity"
+            android:launchMode="singleTask" />
 
         <activity android:name=".ui.downloadvideo.DownloadVideoActivity" />
 
@@ -61,6 +82,21 @@
         <activity
             android:name="com.donkingliang.imageselector.ClipImageActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!--个推-->
+        <meta-data
+            android:name="GETUI_APPID"
+            android:value="${GETUI_APPID}" />
+
+        <service
+            android:name=".getui.DemoPushService"
+            android:exported="true"
+            android:label="PushService"
+            android:process=":pushservice" />
+
+        <service
+            android:name=".getui.DemoIntentService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
 
     </application>
 

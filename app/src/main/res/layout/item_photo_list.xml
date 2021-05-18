@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="@dimen/dp_114"
-    android:layout_marginBottom="@dimen/dp_8"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dp_6"
     android:orientation="horizontal">
 
     <RelativeLayout
-        android:layout_width="@dimen/dp_114"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent">
 
         <ImageView
@@ -37,7 +37,7 @@
 
     <TextView
         android:id="@+id/tv_view"
-        android:layout_width="@dimen/dp_11"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent">
 
     </TextView>

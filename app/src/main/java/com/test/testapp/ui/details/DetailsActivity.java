@@ -1,6 +1,8 @@
 package com.test.testapp.ui.details;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.ViewTreeObserver;
 
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -59,9 +61,18 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding, Detail
 
         ImageLoad.DisplayRoundCorner(DetailsActivity.this, "http://gank.io/images/f12526b3e9654a47842db6ce21222874", binding.ivHeard, 6);
 
-        PhotoistAdapter photoistAdapter = new PhotoistAdapter(DetailsActivity.this, user.getAlbumLists());
-        binding.rvPhoto.setLayoutManager(new GridLayoutManager(DetailsActivity.this, 3));
-        binding.rvPhoto.setAdapter(photoistAdapter);
+        binding.rvPhoto.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                binding.rvPhoto.getViewTreeObserver().removeOnPreDrawListener(this);
+                int width = binding.rvPhoto.getMeasuredWidth();
+                Log.d("width", "initData: " + width);
+                PhotoistAdapter photoistAdapter = new PhotoistAdapter(DetailsActivity.this, user.getAlbumLists(),width);
+                binding.rvPhoto.setLayoutManager(new GridLayoutManager(DetailsActivity.this, 3));
+                binding.rvPhoto.setAdapter(photoistAdapter);
+                return true;
+            }
+        });
 
         DynamicListAdapter dynamicListAdapter = new DynamicListAdapter(DetailsActivity.this, user.getAlbumLists());
         binding.rvDynamic.setLayoutManager(new LinearLayoutManager(DetailsActivity.this, LinearLayoutManager.HORIZONTAL, false));

@@ -25,6 +25,7 @@ import com.test.testapp.databinding.ActivityProfileBinding;
 import com.test.testapp.entity.setting.AgeBean;
 import com.test.testapp.entity.setting.CitysBean;
 import com.test.testapp.entity.login.UsersBean;
+import com.test.testapp.ui.login.PhoneLoginActivity;
 import com.test.testapp.ui.main.MainActivity;
 import com.test.testapp.utils.DataUtils;
 import com.test.testapp.utils.ImageLoad;
@@ -324,7 +325,7 @@ public class ProfileActivity extends BaseActivity<ActivityProfileBinding, Profil
 
         AppApplication.getInstance().setUser(usersBean);
 
-        startActivity(MainActivity.class);
+        startActivity(PhoneLoginActivity.class);
         finish();
     }
 }

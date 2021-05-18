@@ -1,25 +1,23 @@
 package com.test.testapp.ui.main.my;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.test.testapp.BR;
 import com.test.testapp.R;
 import com.test.testapp.app.AppApplication;
 import com.test.testapp.app.AppViewModelFactory;
 import com.test.testapp.databinding.FragmentMyBindingImpl;
-import com.test.testapp.databinding.FragmentNewsBinding;
 import com.test.testapp.entity.login.UsersBean;
 import com.test.testapp.ui.main.adapter.AlbumListAdapter;
 import com.test.testapp.utils.ImageLoad;
-
-import java.util.List;
 
 import me.goldze.mvvmhabit.base.BaseFragment;
 
@@ -70,9 +68,18 @@ public class MyFragment extends BaseFragment<FragmentMyBindingImpl, MyViewModel>
         binding.tvFlowercoin.setText(user.getFlowercoin() + "");
 
         if (user.getAlbumLists() != null && user.getAlbumLists().size() > 0) {
-            binding.rvAlbum.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
-            AlbumListAdapter albumListAdapter = new AlbumListAdapter(getActivity(), user.getAlbumLists());
-            binding.rvAlbum.setAdapter(albumListAdapter);
+            binding.rvAlbum.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                @Override
+                public boolean onPreDraw() {
+                    binding.rvAlbum.getViewTreeObserver().removeOnPreDrawListener(this);
+                    int width = binding.rvAlbum.getMeasuredWidth();
+                    Log.d("width", "initData: " + width);
+                    binding.rvAlbum.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+                    AlbumListAdapter albumListAdapter = new AlbumListAdapter(getActivity(), user.getAlbumLists(), width);
+                    binding.rvAlbum.setAdapter(albumListAdapter);
+                    return true;
+                }
+            });
         }
     }
 }

@@ -4,6 +4,8 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.exceptions.HyphenateException;
 import com.test.testapp.data.AppRepository;
 import com.test.testapp.ui.setting.SexSelectionActivity;
 
@@ -46,11 +48,17 @@ public class RegisterViewModel extends BaseViewModel<AppRepository> {
     public BindingCommand obtaincode = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
-            uc.obtainCode.setValue("1997");
+            uc.obtainCode.setValue("0000");
         }
     });
 
     public void getRegister(String phone, String code) {
+//        try {
+//            EMClient.getInstance().createAccount(phone, code);//同步方法
+//        } catch (HyphenateException e) {
+//            e.printStackTrace();
+//        }
         startActivity(SexSelectionActivity.class);
+        finish();
     }
 }
