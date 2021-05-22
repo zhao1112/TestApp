@@ -1,9 +1,12 @@
 package com.test.testapp.ui.login;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.hyphenate.EMCallBack;
+import com.hyphenate.chat.EMClient;
 import com.test.testapp.data.AppRepository;
 import com.test.testapp.ui.main.MainActivity;
 
@@ -53,10 +56,28 @@ public class PasswordLoginViewModel extends BaseViewModel<AppRepository> {
     });
 
     public void getLogin(String phone, String code) {
-        if (phone.equals("15006237888")&&code.equals("0000")){
-            startActivity(MainActivity.class);
-            finish();
-        }else {
+        if (phone.equals("15006237551") && code.equals("123456")) {
+            EMClient.getInstance().login(phone, code, new EMCallBack() {
+                @Override
+                public void onSuccess() {
+                    EMClient.getInstance().groupManager().loadAllGroups();
+                    EMClient.getInstance().chatManager().loadAllConversations();
+                    startActivity(MainActivity.class);
+                    finish();
+                }
+
+                @Override
+                public void onError(int code, String error) {
+                    Log.d("main", "登录聊天服务器失败！" + error);
+                }
+
+                @Override
+                public void onProgress(int progress, String status) {
+
+                }
+            });
+
+        } else {
             uc.phonetips.setValue(true);
         }
     }

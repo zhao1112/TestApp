@@ -2,6 +2,7 @@ package com.test.testapp.ui.main.news;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -10,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.exceptions.HyphenateException;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -20,6 +23,8 @@ import com.test.testapp.databinding.FragmentDynamicBinding;
 import com.test.testapp.databinding.FragmentNewsBinding;
 import com.test.testapp.ui.main.adapter.NewsAdapter;
 import com.test.testapp.utils.DataUtils;
+
+import java.util.List;
 
 import me.goldze.mvvmhabit.base.BaseFragment;
 
@@ -57,6 +62,14 @@ public class NewsFragment extends BaseFragment<FragmentNewsBinding, NewsViewMode
     }
 
     private void initRecycle() {
+        try {
+            List<String> allContactsFromServer = EMClient.getInstance().contactManager().getAllContactsFromServer();
+            Log.d("NewsFragment", "initRecycle: " + allContactsFromServer.get(0).toString());
+        } catch (HyphenateException e) {
+            e.printStackTrace();
+            Log.d("NewsFragment", "initRecycle: " + e.getMessage());
+        }
+
         newsAdapter = new NewsAdapter();
 
         binding.rvNews.setLayoutManager(new LinearLayoutManager(getActivity()));

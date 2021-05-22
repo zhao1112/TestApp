@@ -71,6 +71,11 @@ ext {
             SERVER_URL      : "https://restapi.getui.com/"
     ]
 
+    //环信
+    easemob = [
+            EASEMOB_APPKEY: "1115190509090324#test-app-2021-05-21"
+    ]
+
 }
 
 

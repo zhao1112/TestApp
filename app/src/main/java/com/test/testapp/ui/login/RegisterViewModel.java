@@ -1,6 +1,7 @@
 package com.test.testapp.ui.login;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -53,11 +54,6 @@ public class RegisterViewModel extends BaseViewModel<AppRepository> {
     });
 
     public void getRegister(String phone, String code) {
-//        try {
-//            EMClient.getInstance().createAccount(phone, code);//同步方法
-//        } catch (HyphenateException e) {
-//            e.printStackTrace();
-//        }
         startActivity(SexSelectionActivity.class);
         finish();
     }

@@ -15,6 +15,7 @@ import com.test.testapp.BR;
 import com.test.testapp.R;
 import com.test.testapp.app.AppViewModelFactory;
 import com.test.testapp.databinding.ActivityRegisterBinding;
+import com.test.testapp.ui.setting.SexSelectionActivity;
 import com.test.testapp.utils.RegularUtils;
 
 import me.goldze.mvvmhabit.base.BaseActivity;

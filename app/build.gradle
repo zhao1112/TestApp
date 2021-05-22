@@ -22,7 +22,9 @@ android {
         manifestPlaceholders = [
                 GETUI_APPID     : rootProject.ext.push.GETUI_APP_ID,
                 GETUI_APP_KEY   : rootProject.ext.push.GETUI_APP_KEY,
-                GETUI_APP_SECRET: rootProject.ext.push.GETUI_APP_SECRET
+                GETUI_APP_SECRET: rootProject.ext.push.GETUI_APP_SECRET,
+
+                EASEMOB_APPKEY  : rootProject.ext.easemob.EASEMOB_APPKEY
         ]
 
         buildConfigField("String", "SERVER_URL", "\"${rootProject.ext.push.SERVER_URL}\"")
